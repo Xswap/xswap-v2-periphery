@@ -17,8 +17,7 @@
   "dependencies": {
     "@truffle/hdwallet-provider": "^1.2.0",
     "@xswap/lib": "^1.0.1",
-    "@xswap/v2-core": "^1.0.5",
-    "resolver-engine": "^0.1.1"
+    "@xswap/v2-core": "^1.0.5"
   },
   "devDependencies": {
     "@types/chai": "^4.2.6",
