@@ -15,9 +15,11 @@
     "contracts"
   ],
   "dependencies": {
+    "@truffle/hdwallet-provider": "^1.2.0",
     "@xswap/lib": "^2.0.0",
     "@xswap/v2-core": "^1.0.0",
-    "@truffle/hdwallet-provider": "^1.2.0"
+    "mocha-multi": "^1.1.3",
+    "resolver-engine": "^0.1.1"
   },
   "devDependencies": {
     "@types/chai": "^4.2.6",
