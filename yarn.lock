@@ -45,14 +45,14 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@xswap/lib@^2.0.0":
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/@xswap/lib/-/lib-2.0.5.tgz#be04edb6e5e14425a324e0be607f3c1887a03143"
+"@xswap/lib@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@xswap/lib/-/lib-1.0.1.tgz#be04edb6e5e14425a324e0be607f3c1887a03143"
   integrity sha512-fqdYBFZHKbcYnd2hchbWfmQXs89mlzzxUT3dBNpA4q8K0aHm+JX4MohfB/4iA3zxSPJiiISeda1PNon1JrHlIQ==
 
 "@xswap/v2-core@^1.0.0":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@xswap/v2-core/-/v2-core-1.0.4.tgz#7c9d552b5ad6f9824f240aba56e5e9fac1698425"
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@xswap/v2-core/-/v2-core-1.0.5.tgz#b4a2e770a24e0d62b9e2b914ed8b0393b72069b3"
   integrity sha512-7FpIVKJAM7aPhH+o0OJhnZj6H+YRXi19GabQnrx3AZonGVK6AD0Ze4PciWQdzMMryvS2RpQv1VXMMCyyLL0uWQ==
   dependencies:
     abstract-leveldown "^5.0.0"
