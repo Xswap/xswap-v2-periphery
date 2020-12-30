@@ -1,8 +1,8 @@
-// File: contracts/interfaces/IEliteswapV2Router01.sol
+// File: contracts/interfaces/IXswapV2Router01.sol
 
 pragma solidity >=0.6.2;
 
-interface IEliteswapV2Router01 {
+interface IXswapV2Router01 {
     function factory() external pure returns (address);
     function WETH() external pure returns (address);
 
@@ -115,7 +115,7 @@ contract RouterEventEmitter {
         uint deadline
     ) external {
         (bool success, bytes memory returnData) = router.delegatecall(abi.encodeWithSelector(
-            IEliteswapV2Router01(router).swapExactTokensForTokens.selector, amountIn, amountOutMin, path, to, deadline
+            IXswapV2Router01(router).swapExactTokensForTokens.selector, amountIn, amountOutMin, path, to, deadline
         ));
         assert(success);
         emit Amounts(abi.decode(returnData, (uint[])));
@@ -130,7 +130,7 @@ contract RouterEventEmitter {
         uint deadline
     ) external {
         (bool success, bytes memory returnData) = router.delegatecall(abi.encodeWithSelector(
-            IEliteswapV2Router01(router).swapTokensForExactTokens.selector, amountOut, amountInMax, path, to, deadline
+            IXswapV2Router01(router).swapTokensForExactTokens.selector, amountOut, amountInMax, path, to, deadline
         ));
         assert(success);
         emit Amounts(abi.decode(returnData, (uint[])));
@@ -144,7 +144,7 @@ contract RouterEventEmitter {
         uint deadline
     ) external payable {
         (bool success, bytes memory returnData) = router.delegatecall(abi.encodeWithSelector(
-            IEliteswapV2Router01(router).swapExactETHForTokens.selector, amountOutMin, path, to, deadline
+            IXswapV2Router01(router).swapExactETHForTokens.selector, amountOutMin, path, to, deadline
         ));
         assert(success);
         emit Amounts(abi.decode(returnData, (uint[])));
@@ -159,7 +159,7 @@ contract RouterEventEmitter {
         uint deadline
     ) external {
         (bool success, bytes memory returnData) = router.delegatecall(abi.encodeWithSelector(
-            IEliteswapV2Router01(router).swapTokensForExactETH.selector, amountOut, amountInMax, path, to, deadline
+            IXswapV2Router01(router).swapTokensForExactETH.selector, amountOut, amountInMax, path, to, deadline
         ));
         assert(success);
         emit Amounts(abi.decode(returnData, (uint[])));
@@ -174,7 +174,7 @@ contract RouterEventEmitter {
         uint deadline
     ) external {
         (bool success, bytes memory returnData) = router.delegatecall(abi.encodeWithSelector(
-            IEliteswapV2Router01(router).swapExactTokensForETH.selector, amountIn, amountOutMin, path, to, deadline
+            IXswapV2Router01(router).swapExactTokensForETH.selector, amountIn, amountOutMin, path, to, deadline
         ));
         assert(success);
         emit Amounts(abi.decode(returnData, (uint[])));
@@ -188,7 +188,7 @@ contract RouterEventEmitter {
         uint deadline
     ) external payable {
         (bool success, bytes memory returnData) = router.delegatecall(abi.encodeWithSelector(
-            IEliteswapV2Router01(router).swapETHForExactTokens.selector, amountOut, path, to, deadline
+            IXswapV2Router01(router).swapETHForExactTokens.selector, amountOut, path, to, deadline
         ));
         assert(success);
         emit Amounts(abi.decode(returnData, (uint[])));

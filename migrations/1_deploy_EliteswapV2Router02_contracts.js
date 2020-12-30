@@ -1,6 +1,6 @@
-const EliteswapV2Router02 = artifacts.require("EliteswapV2Router02");
+const XswapV2Router02 = artifacts.require("XswapV2Router02");
 
-// addresses[0]: 0x2D942Bc34754DD9A1aB2Da986fC545A0dAFF2cfB (Eliteswap: Deployer 2)
+// addresses[0]: 0x2D942Bc34754DD9A1aB2Da986fC545A0dAFF2cfB (Xswap: Deployer 2)
 
 module.exports = async function (deployer, network, addresses) {
   let wethAddress;
@@ -13,8 +13,8 @@ module.exports = async function (deployer, network, addresses) {
     wethAddress = await '0xc778417E063141139Fce010982780140Aa0cD5Ab';
     factoryAddress = await '0xb4e0d45B7f7314e540285C2dd300576B2a26195e';
   } else {
-    throw new Error('No Elite Swap on this network')
+    throw new Error('No XswapSwap on this network')
   }
   
-  await deployer.deploy(EliteswapV2Router02, factoryAddress, wethAddress);
+  await deployer.deploy(XswapV2Router02, factoryAddress, wethAddress);
 };

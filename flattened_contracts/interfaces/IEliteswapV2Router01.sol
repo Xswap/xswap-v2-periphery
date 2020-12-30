@@ -1,6 +1,6 @@
 pragma solidity >=0.6.2;
 
-interface IEliteswapV2Router01 {
+interface IXswapV2Router01 {
     function factory() external pure returns (address);
     function WETH() external pure returns (address);
 

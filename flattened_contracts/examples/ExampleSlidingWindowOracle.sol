@@ -1,8 +1,8 @@
-// File: @eliteswap/v2-core/contracts/interfaces/IEliteswapV2Factory.sol
+// File: @xswap/v2-core/contracts/interfaces/IXswapV2Factory.sol
 
 pragma solidity >=0.5.0;
 
-interface IEliteswapV2Factory {
+interface IXswapV2Factory {
     event PairCreated(address indexed token0, address indexed token1, address pair, uint);
 
     function feeTo() external view returns (address);
@@ -18,11 +18,11 @@ interface IEliteswapV2Factory {
     function setFeeToSetter(address) external;
 }
 
-// File: @eliteswap/v2-core/contracts/interfaces/IEliteswapV2Pair.sol
+// File: @xswap/v2-core/contracts/interfaces/IXswapV2Pair.sol
 
 pragma solidity >=0.5.0;
 
-interface IEliteswapV2Pair {
+interface IXswapV2Pair {
     event Approval(address indexed owner, address indexed spender, uint value);
     event Transfer(address indexed from, address indexed to, uint value);
 
@@ -73,7 +73,7 @@ interface IEliteswapV2Pair {
     function initialize(address, address) external;
 }
 
-// File: @eliteswap/lib/contracts/libraries/FullMath.sol
+// File: @xswap/lib/contracts/libraries/FullMath.sol
 
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.4.0;
@@ -123,7 +123,7 @@ library FullMath {
     }
 }
 
-// File: @eliteswap/lib/contracts/libraries/Babylonian.sol
+// File: @xswap/lib/contracts/libraries/Babylonian.sol
 
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -147,7 +147,7 @@ library Babylonian {
     }
 }
 
-// File: @eliteswap/lib/contracts/libraries/FixedPoint.sol
+// File: @xswap/lib/contracts/libraries/FixedPoint.sol
 
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity >=0.4.0;
@@ -309,20 +309,20 @@ library SafeMath {
     }
 }
 
-// File: contracts/libraries/EliteswapV2Library.sol
+// File: contracts/libraries/XswapV2Library.sol
 
 pragma solidity >=0.5.0;
 
 
 
-library EliteswapV2Library {
+library XswapV2Library {
     using SafeMath for uint;
 
     // returns sorted token addresses, used to handle return values from pairs sorted in this order
     function sortTokens(address tokenA, address tokenB) internal pure returns (address token0, address token1) {
-        require(tokenA != tokenB, 'EliteswapV2Library: IDENTICAL_ADDRESSES');
+        require(tokenA != tokenB, 'XswapV2Library: IDENTICAL_ADDRESSES');
         (token0, token1) = tokenA < tokenB ? (tokenA, tokenB) : (tokenB, tokenA);
-        require(token0 != address(0), 'EliteswapV2Library: ZERO_ADDRESS');
+        require(token0 != address(0), 'XswapV2Library: ZERO_ADDRESS');
     }
 
     // calculates the CREATE2 address for a pair without making any external calls
@@ -339,21 +339,21 @@ library EliteswapV2Library {
     // fetches and sorts the reserves for a pair
     function getReserves(address factory, address tokenA, address tokenB) internal view returns (uint reserveA, uint reserveB) {
         (address token0,) = sortTokens(tokenA, tokenB);
-        (uint reserve0, uint reserve1,) = IEliteswapV2Pair(pairFor(factory, tokenA, tokenB)).getReserves();
+        (uint reserve0, uint reserve1,) = IXswapV2Pair(pairFor(factory, tokenA, tokenB)).getReserves();
         (reserveA, reserveB) = tokenA == token0 ? (reserve0, reserve1) : (reserve1, reserve0);
     }
 
     // given some amount of an asset and pair reserves, returns an equivalent amount of the other asset
     function quote(uint amountA, uint reserveA, uint reserveB) internal pure returns (uint amountB) {
-        require(amountA > 0, 'EliteswapV2Library: INSUFFICIENT_AMOUNT');
-        require(reserveA > 0 && reserveB > 0, 'EliteswapV2Library: INSUFFICIENT_LIQUIDITY');
+        require(amountA > 0, 'XswapV2Library: INSUFFICIENT_AMOUNT');
+        require(reserveA > 0 && reserveB > 0, 'XswapV2Library: INSUFFICIENT_LIQUIDITY');
         amountB = amountA.mul(reserveB) / reserveA;
     }
 
     // given an input amount of an asset and pair reserves, returns the maximum output amount of the other asset
     function getAmountOut(uint amountIn, uint reserveIn, uint reserveOut) internal pure returns (uint amountOut) {
-        require(amountIn > 0, 'EliteswapV2Library: INSUFFICIENT_INPUT_AMOUNT');
-        require(reserveIn > 0 && reserveOut > 0, 'EliteswapV2Library: INSUFFICIENT_LIQUIDITY');
+        require(amountIn > 0, 'XswapV2Library: INSUFFICIENT_INPUT_AMOUNT');
+        require(reserveIn > 0 && reserveOut > 0, 'XswapV2Library: INSUFFICIENT_LIQUIDITY');
         uint amountInWithFee = amountIn.mul(997);
         uint numerator = amountInWithFee.mul(reserveOut);
         uint denominator = reserveIn.mul(1000).add(amountInWithFee);
@@ -362,8 +362,8 @@ library EliteswapV2Library {
 
     // given an output amount of an asset and pair reserves, returns a required input amount of the other asset
     function getAmountIn(uint amountOut, uint reserveIn, uint reserveOut) internal pure returns (uint amountIn) {
-        require(amountOut > 0, 'EliteswapV2Library: INSUFFICIENT_OUTPUT_AMOUNT');
-        require(reserveIn > 0 && reserveOut > 0, 'EliteswapV2Library: INSUFFICIENT_LIQUIDITY');
+        require(amountOut > 0, 'XswapV2Library: INSUFFICIENT_OUTPUT_AMOUNT');
+        require(reserveIn > 0 && reserveOut > 0, 'XswapV2Library: INSUFFICIENT_LIQUIDITY');
         uint numerator = reserveIn.mul(amountOut).mul(1000);
         uint denominator = reserveOut.sub(amountOut).mul(997);
         amountIn = (numerator / denominator).add(1);
@@ -371,7 +371,7 @@ library EliteswapV2Library {
 
     // performs chained getAmountOut calculations on any number of pairs
     function getAmountsOut(address factory, uint amountIn, address[] memory path) internal view returns (uint[] memory amounts) {
-        require(path.length >= 2, 'EliteswapV2Library: INVALID_PATH');
+        require(path.length >= 2, 'XswapV2Library: INVALID_PATH');
         amounts = new uint[](path.length);
         amounts[0] = amountIn;
         for (uint i; i < path.length - 1; i++) {
@@ -382,7 +382,7 @@ library EliteswapV2Library {
 
     // performs chained getAmountIn calculations on any number of pairs
     function getAmountsIn(address factory, uint amountOut, address[] memory path) internal view returns (uint[] memory amounts) {
-        require(path.length >= 2, 'EliteswapV2Library: INVALID_PATH');
+        require(path.length >= 2, 'XswapV2Library: INVALID_PATH');
         amounts = new uint[](path.length);
         amounts[amounts.length - 1] = amountOut;
         for (uint i = path.length - 1; i > 0; i--) {
@@ -392,14 +392,14 @@ library EliteswapV2Library {
     }
 }
 
-// File: contracts/libraries/EliteswapV2OracleLibrary.sol
+// File: contracts/libraries/XswapV2OracleLibrary.sol
 
 pragma solidity >=0.5.0;
 
 
 
 // library with helper methods for oracles that are concerned with computing average prices
-library EliteswapV2OracleLibrary {
+library XswapV2OracleLibrary {
     using FixedPoint for *;
 
     // helper function that returns the current block timestamp within the range of uint32, i.e. [0, 2**32 - 1]
@@ -412,11 +412,11 @@ library EliteswapV2OracleLibrary {
         address pair
     ) internal view returns (uint price0Cumulative, uint price1Cumulative, uint32 blockTimestamp) {
         blockTimestamp = currentBlockTimestamp();
-        price0Cumulative = IEliteswapV2Pair(pair).price0CumulativeLast();
-        price1Cumulative = IEliteswapV2Pair(pair).price1CumulativeLast();
+        price0Cumulative = IXswapV2Pair(pair).price0CumulativeLast();
+        price1Cumulative = IXswapV2Pair(pair).price1CumulativeLast();
 
         // if time has elapsed since the last update on the pair, mock the accumulated price values
-        (uint112 reserve0, uint112 reserve1, uint32 blockTimestampLast) = IEliteswapV2Pair(pair).getReserves();
+        (uint112 reserve0, uint112 reserve1, uint32 blockTimestampLast) = IXswapV2Pair(pair).getReserves();
         if (blockTimestampLast != blockTimestamp) {
             // subtraction overflow is desired
             uint32 timeElapsed = blockTimestamp - blockTimestampLast;
@@ -498,7 +498,7 @@ contract ExampleSlidingWindowOracle {
     // update the cumulative price for the observation at the current timestamp. each observation is updated at most
     // once per epoch period.
     function update(address tokenA, address tokenB) external {
-        address pair = EliteswapV2Library.pairFor(factory, tokenA, tokenB);
+        address pair = XswapV2Library.pairFor(factory, tokenA, tokenB);
 
         // populate the array with empty observations (first call only)
         for (uint i = pairObservations[pair].length; i < granularity; i++) {
@@ -512,7 +512,7 @@ contract ExampleSlidingWindowOracle {
         // we only want to commit updates once per period (i.e. windowSize / granularity)
         uint timeElapsed = block.timestamp - observation.timestamp;
         if (timeElapsed > periodSize) {
-            (uint price0Cumulative, uint price1Cumulative,) = EliteswapV2OracleLibrary.currentCumulativePrices(pair);
+            (uint price0Cumulative, uint price1Cumulative,) = XswapV2OracleLibrary.currentCumulativePrices(pair);
             observation.timestamp = block.timestamp;
             observation.price0Cumulative = price0Cumulative;
             observation.price1Cumulative = price1Cumulative;
@@ -536,7 +536,7 @@ contract ExampleSlidingWindowOracle {
     // range [now - [windowSize, windowSize - periodSize * 2], now]
     // update must have been called for the bucket corresponding to timestamp `now - windowSize`
     function consult(address tokenIn, uint amountIn, address tokenOut) external view returns (uint amountOut) {
-        address pair = EliteswapV2Library.pairFor(factory, tokenIn, tokenOut);
+        address pair = XswapV2Library.pairFor(factory, tokenIn, tokenOut);
         Observation storage firstObservation = getFirstObservationInWindow(pair);
 
         uint timeElapsed = block.timestamp - firstObservation.timestamp;
@@ -544,8 +544,8 @@ contract ExampleSlidingWindowOracle {
         // should never happen.
         require(timeElapsed >= windowSize - periodSize * 2, 'SlidingWindowOracle: UNEXPECTED_TIME_ELAPSED');
 
-        (uint price0Cumulative, uint price1Cumulative,) = EliteswapV2OracleLibrary.currentCumulativePrices(pair);
-        (address token0,) = EliteswapV2Library.sortTokens(tokenIn, tokenOut);
+        (uint price0Cumulative, uint price1Cumulative,) = XswapV2OracleLibrary.currentCumulativePrices(pair);
+        (address token0,) = XswapV2Library.sortTokens(tokenIn, tokenOut);
 
         if (token0 == tokenIn) {
             return computeAmountOut(firstObservation.price0Cumulative, price0Cumulative, timeElapsed, amountIn);

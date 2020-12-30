@@ -1,8 +1,8 @@
 pragma solidity >=0.6.2;
 
-import './IEliteswapV2Router01.sol';
+import './IXswapV2Router01.sol';
 
-interface IEliteswapV2Router02 is IEliteswapV2Router01 {
+interface IXswapV2Router02 is IXswapV2Router01 {
     function removeLiquidityETHSupportingFeeOnTransferTokens(
         address token,
         uint liquidity,

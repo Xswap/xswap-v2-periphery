@@ -1,8 +1,8 @@
-// File: contracts/interfaces/IEliteswapV2Router01.sol
+// File: contracts/interfaces/IXswapV2Router01.sol
 
 pragma solidity >=0.6.2;
 
-interface IEliteswapV2Router01 {
+interface IXswapV2Router01 {
     function factory() external pure returns (address);
     function WETH() external pure returns (address);
 
@@ -96,12 +96,12 @@ interface IEliteswapV2Router01 {
     function getAmountsIn(uint amountOut, address[] calldata path) external view returns (uint[] memory amounts);
 }
 
-// File: contracts/interfaces/IEliteswapV2Router02.sol
+// File: contracts/interfaces/IXswapV2Router02.sol
 
 pragma solidity >=0.6.2;
 
 
-interface IEliteswapV2Router02 is IEliteswapV2Router01 {
+interface IXswapV2Router02 is IXswapV2Router01 {
     function removeLiquidityETHSupportingFeeOnTransferTokens(
         address token,
         uint liquidity,

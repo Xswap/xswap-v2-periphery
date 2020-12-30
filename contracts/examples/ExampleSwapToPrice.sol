@@ -1,21 +1,21 @@
 pragma solidity =0.6.6;
 
-import '@eliteswap/v2-core/contracts/interfaces/IEliteswapV2Pair.sol';
-import '@eliteswap/lib/contracts/libraries/Babylonian.sol';
-import '@eliteswap/lib/contracts/libraries/TransferHelper.sol';
+import '@xswap/v2-core/contracts/interfaces/IXswapV2Pair.sol';
+import '@xswap/lib/contracts/libraries/Babylonian.sol';
+import '@xswap/lib/contracts/libraries/TransferHelper.sol';
 
 import '../interfaces/IERC20.sol';
-import '../interfaces/IEliteswapV2Router01.sol';
+import '../interfaces/IXswapV2Router01.sol';
 import '../libraries/SafeMath.sol';
-import '../libraries/EliteswapV2Library.sol';
+import '../libraries/XswapV2Library.sol';
 
 contract ExampleSwapToPrice {
     using SafeMath for uint256;
 
-    IEliteswapV2Router01 public immutable router;
+    IXswapV2Router01 public immutable router;
     address public immutable factory;
 
-    constructor(address factory_, IEliteswapV2Router01 router_) public {
+    constructor(address factory_, IXswapV2Router01 router_) public {
         factory = factory_;
         router = router_;
     }
@@ -62,7 +62,7 @@ contract ExampleSwapToPrice {
         bool aToB;
         uint256 amountIn;
         {
-            (uint256 reserveA, uint256 reserveB) = EliteswapV2Library.getReserves(factory, tokenA, tokenB);
+            (uint256 reserveA, uint256 reserveB) = XswapV2Library.getReserves(factory, tokenA, tokenB);
             (aToB, amountIn) = computeProfitMaximizingTrade(
                 truePriceTokenA, truePriceTokenB,
                 reserveA, reserveB

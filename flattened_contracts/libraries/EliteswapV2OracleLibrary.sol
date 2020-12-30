@@ -1,8 +1,8 @@
-// File: @eliteswap/v2-core/contracts/interfaces/IEliteswapV2Pair.sol
+// File: @xswap/v2-core/contracts/interfaces/IXswapV2Pair.sol
 
 pragma solidity >=0.5.0;
 
-interface IEliteswapV2Pair {
+interface IXswapV2Pair {
     event Approval(address indexed owner, address indexed spender, uint value);
     event Transfer(address indexed from, address indexed to, uint value);
 
@@ -53,7 +53,7 @@ interface IEliteswapV2Pair {
     function initialize(address, address) external;
 }
 
-// File: @eliteswap/lib/contracts/libraries/FullMath.sol
+// File: @xswap/lib/contracts/libraries/FullMath.sol
 
 // SPDX-License-Identifier: CC-BY-4.0
 pragma solidity >=0.4.0;
@@ -103,7 +103,7 @@ library FullMath {
     }
 }
 
-// File: @eliteswap/lib/contracts/libraries/Babylonian.sol
+// File: @xswap/lib/contracts/libraries/Babylonian.sol
 
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -127,7 +127,7 @@ library Babylonian {
     }
 }
 
-// File: @eliteswap/lib/contracts/libraries/FixedPoint.sol
+// File: @xswap/lib/contracts/libraries/FixedPoint.sol
 
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity >=0.4.0;
@@ -269,14 +269,14 @@ library FixedPoint {
     }
 }
 
-// File: contracts/libraries/EliteswapV2OracleLibrary.sol
+// File: contracts/libraries/XswapV2OracleLibrary.sol
 
 pragma solidity >=0.5.0;
 
 
 
 // library with helper methods for oracles that are concerned with computing average prices
-library EliteswapV2OracleLibrary {
+library XswapV2OracleLibrary {
     using FixedPoint for *;
 
     // helper function that returns the current block timestamp within the range of uint32, i.e. [0, 2**32 - 1]
@@ -289,11 +289,11 @@ library EliteswapV2OracleLibrary {
         address pair
     ) internal view returns (uint price0Cumulative, uint price1Cumulative, uint32 blockTimestamp) {
         blockTimestamp = currentBlockTimestamp();
-        price0Cumulative = IEliteswapV2Pair(pair).price0CumulativeLast();
-        price1Cumulative = IEliteswapV2Pair(pair).price1CumulativeLast();
+        price0Cumulative = IXswapV2Pair(pair).price0CumulativeLast();
+        price1Cumulative = IXswapV2Pair(pair).price1CumulativeLast();
 
         // if time has elapsed since the last update on the pair, mock the accumulated price values
-        (uint112 reserve0, uint112 reserve1, uint32 blockTimestampLast) = IEliteswapV2Pair(pair).getReserves();
+        (uint112 reserve0, uint112 reserve1, uint32 blockTimestampLast) = IXswapV2Pair(pair).getReserves();
         if (blockTimestampLast != blockTimestamp) {
             // subtraction overflow is desired
             uint32 timeElapsed = blockTimestamp - blockTimestampLast;
