@@ -53,7 +53,7 @@
 "@xswap/v2-core@^1.0.0":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@xswap/v2-core/-/v2-core-1.0.5.tgz#b4a2e770a24e0d62b9e2b914ed8b0393b72069b3"
-  integrity sha512-7FpIVKJAM7aPhH+o0OJhnZj6H+YRXi19GabQnrx3AZonGVK6AD0Ze4PciWQdzMMryvS2RpQv1VXMMCyyLL0uWQ==
+  integrity sha512-Kgnv9ZtksvZ604OC/PlAsGhAkXgvAymSf+ejQ3bwbnDTjMtobk4qv8nc7jEJyHyCiM6ain2GUzJQLFA3Abxwdw==
   dependencies:
     abstract-leveldown "^5.0.0"
     accepts "^1.3.7"
