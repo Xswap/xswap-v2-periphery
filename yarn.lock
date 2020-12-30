@@ -497,7 +497,7 @@
   resolved "https://registry.yarnpkg.com/@uniswap/lib/-/lib-4.0.1-alpha.tgz#2881008e55f075344675b3bca93f020b028fbd02"
   integrity sha512-f6UIliwBbRsgVLxIaBANF6w09tYqc6Y/qXdsrbEmXHyFA7ILiKrIwRFXe1yOg8M3cksgVsO9N7yuL2DdCGQKBA==
 
-"@xswap/lib@^2.0.0":
+"@xswap/lib@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@xswap/lib/-/lib-1.0.1.tgz#886ed2606c5f90b50190edab8a76305dbdb88428"
   integrity sha512-+IpvmoKIjqtfo27pToL/YtNKoUVj/pOweqXSnUvQwRcz3HHmG0XJh9Q4Kdd2nLiL4WBWRmBE2vAcAF7IdrSbWA==
